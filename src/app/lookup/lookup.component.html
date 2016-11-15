@@ -1,0 +1,33 @@
+<div class="container">
+  <form [formGroup]="searchForm" (submit)=lookup()>
+    <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+              <div id="custom-search-input">
+                  <div class="input-group col-md-12">
+                      <input type="text" class="form-control input-lg" placeholder="Enter domain for lookup" formControlName="domain"/>
+                      <span class="input-group-btn">
+                          <button class="btn btn-info btn-lg" type="submit" [disabled]="!searchForm.valid">
+                              <i class="glyphicon glyphicon-search"></i>
+                          </button>
+                      </span>
+                  </div>
+              </div>
+          </div>
+    </div>
+  </form>
+
+  <div class="container row">
+    <div class="col-md-4" *ngIf="currentLookupResult?.count">
+      <h2>Total Documents:</h2>
+      <p>{{ currentLookupResult?.count }}</p>
+    </div>
+    <div class="col-md-4" *ngIf="currentLookupResult?.subDomains">
+      <h2>Sub-Domain:</h2>
+      <p *ngFor="let subDomain of currentLookupResult?.subDomains">{{ subDomain.term }}: {{subDomain.count}}</p>
+    </div>
+    <div class="col-md-4" *ngIf="currentLookupResult?.parsers">
+      <h2>Parsers:</h2>
+      <p *ngFor="let parser of currentLookupResult?.parsers">{{ parser.term }}: {{parser.count}}</p>
+    </div>
+  </div>
+</div>
