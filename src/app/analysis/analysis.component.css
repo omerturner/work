@@ -1,5 +1,6 @@
-.form-group {
-  max-width: 500px;
+
+form {
+  margin-bottom: 50px;
 }
 
 .right-float {
@@ -8,4 +9,8 @@
 
 .left-float {
   float: left;
+}
+
+.result-card {
+  padding: 20px;
 }
