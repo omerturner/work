@@ -35,7 +35,10 @@ export class LookupComponent implements OnInit {
     let source = this.searchForm['_value']['domain'];
     if (source.length > 2) {
       this.searchForm['_value']['domain'] = '';
-      this.currentLookupResult = this.lookupService.lookupByDomain(source);
+       this.lookupService.lookupByDomain(source).subscribe(
+          response  => this.currentLookupResult = response,
+          error =>  console.log(error)
+        )
     }
   }
 

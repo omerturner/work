@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { LookupResult } from './lookup-result';
+import { AnalysisRequest, AnalysisResults } from './analysis-result';
 
 @Injectable()
-export class LookupService {
+export class AnalysisService {
 
-  private lookupUrl = 'http://localhost:8512/api/analysis/source'
-
+  private analysisUrl = 'http://analysis.omgili.com/api/analysis/query';
   constructor(private http: Http) { }
 
-  lookupByDomain (domain: string): Observable<LookupResult> {
-    let bodyString = JSON.stringify({source: domain});
+  getResults(requestParams: AnalysisRequest): Observable<AnalysisResults> {
+    let bodyString = JSON.stringify(requestParams);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.lookupUrl, bodyString, options)
+    return this.http.post(this.analysisUrl, bodyString, options)
                .map(this.extractData)
                .catch(this.handleError);
   }
+  
 
   private extractData(res: Response) {
-    return res.json();
+    return {results: res.json()};
   }
 
   private handleError (error: Response | any) {
@@ -40,5 +40,4 @@ export class LookupService {
     console.error(errMsg);
     return Observable.throw(errMsg);
   }
-
 }

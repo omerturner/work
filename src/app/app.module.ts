@@ -7,6 +7,7 @@ import { RouterModule }   from '@angular/router';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 import { LookupService } from './lookup.service'
+import { AnalysisService } from './analysis.service'
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -14,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { ListsComponent } from './lists/lists.component';
 import { LookupComponent } from './lookup/lookup.component';
+import { LoaderComponent } from './loader/loader.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDXQalnhoA7TZ7fxgcR_YUk7FMQ-6AJ4cM",
@@ -35,7 +37,8 @@ const myFirebaseAuthConfig = {
     LoginComponent,
     AnalysisComponent,
     ListsComponent,
-    LookupComponent
+    LookupComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,10 @@ const myFirebaseAuthConfig = {
     ]),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
   ],
-  providers: [LookupService],
+  providers: [
+    LookupService,
+    AnalysisService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,11 @@
+.form-group {
+  max-width: 500px;
+}
+
+.right-float {
+  float: right;
+}
+
+.left-float {
+  float: left;
+}
