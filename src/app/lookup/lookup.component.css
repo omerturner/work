@@ -29,3 +29,7 @@
 #custom-search-input .glyphicon-search{
     font-size: 23px;
 }
+
+.pie, .count-headline {
+    margin: 50px 0;
+}

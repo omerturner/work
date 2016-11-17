@@ -5,5 +5,6 @@ class term {
 export class LookupResult {
     constructor(public count: number,
                 public subDomains: term[],
-                public parsers: term[] ) { }
+                public parsers: term[],
+                public siteTypes: term[] ) { }
 }

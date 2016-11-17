@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule }   from '@angular/router';
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+import { ChartModule } from 'angular2-highcharts';
 
 import { LookupService } from './lookup.service'
 import { AnalysisService } from './analysis.service'
@@ -18,11 +19,11 @@ import { LookupComponent } from './lookup/lookup.component';
 import { LoaderComponent } from './loader/loader.component';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyDXQalnhoA7TZ7fxgcR_YUk7FMQ-6AJ4cM",
-  authDomain: "userauth-3c740.firebaseapp.com",
-  databaseURL: "https://userauth-3c740.firebaseio.com",
-  storageBucket: "userauth-3c740.appspot.com",
-  messagingSenderId: "568148522490"
+  apiKey: "AIzaSyC5SsVq0P4POsC0_s05mPTsD9Taaj3TXzc",
+  authDomain: "webhose-work.firebaseapp.com",
+  databaseURL: "https://webhose-work.firebaseio.com",
+  storageBucket: "webhose-work.appspot.com",
+  messagingSenderId: "232734272701"
 };
 
 const myFirebaseAuthConfig = {
@@ -54,6 +55,7 @@ const myFirebaseAuthConfig = {
       { path: 'lists', component: ListsComponent }
     ]),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
+    ChartModule
   ],
   providers: [
     LookupService,

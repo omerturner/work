@@ -17,17 +17,14 @@
   </form>
 
   <div class="container row">
-    <div class="col-md-4" *ngIf="currentLookupResult?.count">
-      <h2>Total Documents:</h2>
-      <p>{{ currentLookupResult?.count }}</p>
+    <app-loader *ngIf="processing" class="col-md-1 col-md-offset-5"></app-loader>
+    <h2 class="col-md-6 col-md-offset-3" *ngIf="currentSource && !processing" style="margin-bottom: -25px">{{ currentSource }}</h2>
+    <div class="col-md-6 col-md-offset-3" *ngIf="currentLookupResult?.count">
+      <h3 class="count-headline">Total Documents: {{ currentLookupResult?.count }}</h3>
     </div>
-    <div class="col-md-4" *ngIf="currentLookupResult?.subDomains">
-      <h2>Sub-Domain:</h2>
-      <p *ngFor="let subDomain of currentLookupResult?.subDomains">{{ subDomain.term }}: {{subDomain.count}}</p>
-    </div>
-    <div class="col-md-4" *ngIf="currentLookupResult?.parsers">
-      <h2>Parsers:</h2>
-      <p *ngFor="let parser of currentLookupResult?.parsers">{{ parser.term }}: {{parser.count}}</p>
+    <div *ngFor="let pie of pies" class="row pie">
+      <chart class="img img-responsive col-md-8 col-md-offset-2" [options]="pie.options"></chart>
     </div>
   </div>
 </div>
+
